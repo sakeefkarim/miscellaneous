@@ -1,5 +1,9 @@
 # PREAMBLE ----------------------------------------------------------------
 
+# For replication, un-annotate and run:
+
+# renv::restore()
+
 # Data wrangling, visualization:
 
 library(tidyverse)
