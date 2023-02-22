@@ -1,6 +1,6 @@
 # PREAMBLE ----------------------------------------------------------------
 
-# For replication, un-annotate and run:
+# For replication, clone the repository, un-annotate and run:
 
 # renv::restore()
 
