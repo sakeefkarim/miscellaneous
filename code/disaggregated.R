@@ -119,6 +119,10 @@ avg_slopes(basic_model,
 
 # https://iqss.github.io/clarify/
 
+# Seminal article by King, Tomz and Wittenberg:
+
+# https://gking.harvard.edu/files/making.pdf
+
 sim_estimates <- sim(basic_model)
 
 # Simulation-baed predictions at representative values:
