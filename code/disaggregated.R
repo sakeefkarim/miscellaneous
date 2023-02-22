@@ -43,13 +43,16 @@ basic_model <- lm(bill_length_mm ~
 
 # Via the modelsummary package:
 
-basic_model %>% modelsummary(output = "table.docx")
+basic_model %>% modelsummary()
+                # To save results as a table in Microsoft Word:
+                #modelsummary(output = "table.docx")
 
 # Via the gtsummary package:
 
-basic_model %>% tbl_regression() %>% 
-                as_flex_table() %>% 
-                flextable::save_as_docx(path = "table.docx")
+basic_model %>% tbl_regression() 
+                # To save results as a table in Microsoft Word:
+                # %>%  as_flex_table() %>% 
+                # flextable::save_as_docx(path = "table.docx")
 
 # GGEFFECTS ---------------------------------------------------------------
 
@@ -72,7 +75,7 @@ model_predictions_ggplot <- ggplot(model_predictions, aes(x = x, y = predicted,
 model_predictions_ggplot + geom_line() + 
                            geom_ribbon(aes(ymin = conf.low, ymax = conf.high), alpha = 0.1) +
                            labs(x = "Flipper Length (mm)",
-                                y = "Bill Length (mm") +
+                                y = "Bill Length (mm)") +
                            theme_minimal() +
                            theme(legend.title = element_blank())
               
@@ -110,7 +113,7 @@ comparisons(basic_model,
 
 avg_slopes(basic_model,
            by = "species",
-           variables = "flipper_length_mm")
+           variables = "flipper_length_mm") %>% broom::tidy()
 
 
 # CLARIFY -----------------------------------------------------------------
@@ -139,8 +142,10 @@ sim_prediction %>% summary(level = 0.99)
 # Visualizing results
 
 sim_prediction %>% plot() + theme_minimal() + labs(x = "Simulated Parameter Estimates",
-                                                   y = "")  + theme(legend.position = "bottom") +
-                            scale_colour_brewer(palette = "Dark2") + scale_fill_brewer(palette = "Dark2")
+                                                   y = "")  + 
+                            theme(legend.position = "bottom") +
+                            scale_colour_brewer(palette = "Dark2") + 
+                            scale_fill_brewer(palette = "Dark2")
 
 
 # SEEMINGLY UNRELATED ESTIMATION IN R -------------------------------------
@@ -154,3 +159,7 @@ sim_prediction %>% plot() + theme_minimal() + labs(x = "Simulated Parameter Esti
 # For an example of how to replicate suest results in R, see:
 
 # https://stats.stackexchange.com/questions/358795/how-to-test-significance-in-shift-of-a-variable-taken-an-other-variable-into-the/465215#465215
+
+# Archived version (just in case):
+
+# https://web.archive.org/web/20211215154037/https://stats.stackexchange.com/questions/358795/how-to-test-significance-in-shift-of-a-variable-taken-an-other-variable-into-the/465215
