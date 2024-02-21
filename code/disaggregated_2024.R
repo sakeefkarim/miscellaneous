@@ -101,7 +101,7 @@ avg_predictions(model,
                                  # percentiles of flipper_length_mm:
                                  flipper_length_mm = 
                                  c(perc_flipper$flipper_25, 
-                                  perc_flipper$flipper_75)))  
+                                   perc_flipper$flipper_75)))  
 
 # Conditional predictions, visualized:
 
@@ -139,7 +139,7 @@ plot_slopes(model,
             aes(colour = species) +
             theme(legend.position = "none") +
             # Flipping orientation for legibility:
-            coord_flip()
+            coord_flip() 
 
 
 # Average Contrasts
@@ -204,6 +204,8 @@ model_dydx <- avg_slopes(model,
                          newdata = datagrid(species = unique,
                                             grid_type = "counterfactual"))
 
+set.seed(905)
+
 model_dydx %>% 
 # Simulating estimates:
 inferences(method = "simulation") %>% 
@@ -220,4 +222,6 @@ theme_bw(base_family = "IBM Plex Sans",
           base_size = 17) +
 labs(x = "Average Marginal Effect of Flipper Length on\n Probability of Penguin Being Female",
      y = "")  +
-geom_vline(xintercept = 0, lty = "dotdash")
+geom_vline(xintercept = 0, lty = "dotdash") +
+theme(# Legend is not necessary:
+      legend.position = "none")
